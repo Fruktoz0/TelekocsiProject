@@ -1,0 +1,17 @@
+<h1>Create new listing</h1>
+
+<div class="formdiv">
+    <label>City from</label>
+    <input type="text" [(ngModel)] = "this.car.cityFrom" />
+
+    <label>City to</label>
+    <input type="text" [(ngModel)] = "this.car.cityTo" />
+
+    <label>Km</label>
+    <input type="number" [(ngModel)] = "this.car.km" />
+
+    <label>Date</label>
+    <input type="date" [(ngModel)] = "this.car.date" />
+
+    <button (click)="add()">Add</button>
+</div>

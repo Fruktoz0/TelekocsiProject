@@ -1,0 +1,13 @@
+<nav *ngIf="this.service.isLoggedIn()"> <!--ha be vagyunk lépve-->
+    <a routerLink="logout">Logout</a>
+    <a routerLink="list">List</a>
+    <a routerLink="create">Create</a>
+</nav>
+<nav *ngIf="!this.service.isLoggedIn()"> <!--ha ki vagyunk lépve-->
+    <a routerLink="login">Login</a>
+    <a routerLink="register">Register</a>
+    <a routerLink="list">List</a>
+</nav>
+<section>
+    <router-outlet></router-outlet>
+</section>

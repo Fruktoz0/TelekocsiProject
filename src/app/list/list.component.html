@@ -1,0 +1,59 @@
+<h1>Browse listing</h1>
+
+<button *ngIf="!this.filtersActive" (click)="this.filtersActive = !this.filtersActive">Show Filters</button>
+<button *ngIf="this.filtersActive" (click)="this.filtersActive = !this.filtersActive">Hide Filters</button>
+<div class="filters" *ngIf="this.filtersActive">
+    <button (click)="this.service.onlyBp()">Only cars from Budapest</button>
+    <button (click)="this.service.sync()" style="border: 1px solid red">Reset filters</button>
+    <br/>
+    <select [(ngModel)] = "this.filterCity">
+        <option *ngFor="let name of this.service.getUniqueCityNames()" value="{{name}}">
+            {{name}}
+        </option>
+    </select>
+    <input type="text" [(ngModel)] = "this.filterCity" />
+    <button (click)="this.service.filterFrom(this.filterCity)">Filter from</button>
+    <button (click)="this.service.filterTo(this.filterCity)">Filter to</button>
+    <br/>
+    <button (click)="this.service.sort('dasc')">Date ASC</button>
+    <button (click)="this.service.sort('ddesc')">Date DESC</button>
+    <button (click)="this.service.sort('kasc')">Km ASC</button>
+    <button (click)="this.service.sort('kdesc')">Km DESC</button>
+    <br/>
+    <button (click)="popalert(this.service.averageKm())">Average KM</button>
+    <button (click)="popalert(this.service.largestRoute())">Largest route</button>
+    <br/>
+    <input type="number" [(ngModel)] = "this.routeLength" />
+    <button (click)="popalert(this.service.hasLargerRoute(this.routeLength))">Route > X?</button>
+    <br/>
+    <input type="date" [(ngModel)] = "this.routeDate" />
+    <button (click)="popalert(this.service.routeNumber(this.routeDate))">Routes at date</button>
+    <br/>
+    <input type="text" [(ngModel)] = "this.routeOwner" />
+    <button (click)="popalert(this.service.searchCar(this.routeOwner))">First route with him/her</button>
+</div>
+
+<table>
+    <tr>
+        <th>City From</th>
+        <th>City To</th>
+        <th>KM</th>
+        <th>Date</th>
+        <th>Owner</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let car of this.service.cars">
+        <td>{{car.cityFrom}}</td>
+        <td>{{car.cityTo}}</td>
+        <td>{{car.km}}</td>
+        <td>{{car.date}}</td>
+        <td>{{car.owner.firstName}} {{car.owner.lastName}}</td>
+        <td>
+            <button *ngIf="car.owner.userName == this.service.getUser()"
+            (click)="this.service.delete(car.id)">Delete</button>
+            &nbsp;
+            <button *ngIf="car.owner.userName == this.service.getUser()"
+            (click)="update(car.id)">Edit</button>
+        </td>
+    </tr>
+</table>

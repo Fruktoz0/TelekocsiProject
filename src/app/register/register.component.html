@@ -1,0 +1,22 @@
+<h1>Register new account </h1>
+<div class="formdiv">
+    <label>Firstname</label>
+    <input type="text" [(ngModel)] = "this.registerModel.firstName" />
+
+    <label>Lastname</label>
+    <input type="text" [(ngModel)] = "this.registerModel.lastName" />
+
+    <label>Username</label>
+    <input type="text" [(ngModel)] = "this.registerModel.userName" />
+
+    <label>Email</label>
+    <input type="email" [(ngModel)] = "this.registerModel.email" />
+
+    <label>Password</label>
+    <input type="password" [(ngModel)] = "this.registerModel.password" />
+
+    <label>Password, again</label>
+    <input type="password" [(ngModel)] = "this.password2" />
+
+    <button (click)="register()">Register</button>
+</div>

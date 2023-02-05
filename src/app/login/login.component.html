@@ -1,0 +1,9 @@
+<h1>Login to the system</h1>
+<div class="formdiv">
+    <label>Username</label>
+    <input [(ngModel)] = "this.loginModel.userName" type="text" id="user"/>
+    <label>Password</label>
+    <input [(ngModel)] = "this.loginModel.password" type="password"
+    (keyup.enter)="this.login()"/>
+    <button (click)="this.login()">Login</button>
+</div>
